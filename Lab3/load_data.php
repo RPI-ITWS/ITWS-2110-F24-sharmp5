@@ -1,5 +1,5 @@
 <?php
-$mysqli = new mysqli("localhost", "root", "", "weatherastronomydb");
+$mysqli = new mysqli("localhost", "root", "Pranay36951!!", "weatherastronomydb");
 
 if ($mysqli->connect_error) {
     die("Connection failed: " . $mysqli->connect_error);

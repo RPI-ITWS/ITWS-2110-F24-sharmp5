@@ -9,7 +9,6 @@ document.getElementById('fetch-weather').addEventListener('click', () => {
         .then(response => response.json())
         .then(data => {
             console.log(data);
-            // Convert temperature to Fahrenheit
             const temperatureF = ((data.main.temp - 273.15) * 9 / 5) + 32;
             const iconCode = data.weather[0].icon;
             const iconUrl = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
@@ -136,5 +135,5 @@ document.getElementById('update-apod').addEventListener('click', () => {
     });
 });
 
-// Add event listener to load button
+// Attach the loadDataFromDatabase function to the button
 document.getElementById('load-from-db').addEventListener('click', loadDataFromDatabase);

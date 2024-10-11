@@ -7,72 +7,32 @@
     <link rel="stylesheet" href="WeatherStyleSheet.css">
 </head>
 <body>
-    <!-- Navigation Link -->
-    <a href="lab3/index.html">Lab 3</a>
-    
-    <!-- Weather API Container -->
     <div id="weather-container" class="container">
         <h2>Weather Data for Troy, NY</h2>
-        <img id="weather-icon" alt="Weather Icon" style="display: none;">
+        <img id="weather-icon" style="display: none;">
         <div id="temp-div"></div>
         <div id="weather-info"></div>
         <button id="fetch-weather" class="fetch-btn">Fetch Weather Data</button>
     </div>
-
-    <!-- NASA API Container -->
     <div id="astronomy-container" class="container">
         <h2>NASA Astronomy Picture of the Day</h2>
-        <img id="apod-image" alt="Astronomy Picture of the Day" style="display: none;">
+        <img id="apod-image" style="display: none;">
         <div id="apod-title"></div>
         <div id="apod-description"></div>
         <button id="fetch-astronomy" class="fetch-btn">Fetch Astronomy Data</button>
     </div>
-
-    <!-- Update Data Container -->
     <div id="update-container" class="container">
         <h3>Update Data</h3>
-        <div class="input-group">
-            <label><b>New Temperature:</b></label>
-            <input type="text" id="new-temperature">
-        </div>
-        <div class="input-group">
-            <label><b>New Weather Description:</b></label>
-            <input type="text" id="new-weather-description">
-        </div>
-        <div class="input-group">
-            <label><b>New Humidity:</b></label>
-            <input type="text" id="new-humidity">
-        </div>
-        <div class="input-group">
-            <label><b>New Wind Speed:</b></label>
-            <input type="text" id="new-wind-speed">
-        </div>
-        <button id="update-weather" class="update-btn">Update Weather</button>
-
-        <div class="input-group">
-            <label><b>New APOD Title:</b></label>
-            <input type="text" id="new-apod-title">
-        </div>
-        <div class="input-group">
-            <label><b>New APOD Description:</b></label>
-            <input type="text" id="new-apod-description">
-        </div>
-        <button id="update-apod" class="update-btn">Update APOD</button>
-
-        <!-- Load Data from Database Button -->
+        <input id="new-temperature" placeholder="New Temperature">
+        <input id="new-weather-description" placeholder="New Weather Description">
+        <input id="new-humidity" placeholder="New Humidity">
+        <input id="new-wind-speed" placeholder="New Wind Speed">
+        <button id="update-weather">Update Weather</button>
+        <input id="new-apod-title" placeholder="New APOD Title">
+        <input id="new-apod-description" placeholder="New APOD Description">
+        <button id="update-apod">Update APOD</button>
         <button id="load-from-db" class="load-btn">Load Data from Database</button>
     </div>
-
-    <!-- Popup Container -->
-    <div id="popup-container" class="popup-container" style="display: none;">
-        <div id="popup-content" class="popup-content">
-            <p>Data Updated!</p>
-            <p>Press "Load Data from Database" to display</p>
-            <button id="popup-load-db" class="load-btn">Load Data from Database</button>
-            <button id="popup-close" class="close-btn">Not Yet</button>
-        </div>
-    </div>
-
     <script src="Script1.js"></script>
 </body>
 </html>

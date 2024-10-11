@@ -7,15 +7,21 @@ if ($mysqli->connect_error) {
 
 $data = json_decode(file_get_contents("php://input"), true);
 
-$stmt = $mysqli->prepare("INSERT INTO weather_data (temperature, description, humidity, wind_speed) VALUES (?, ?, ?, ?)");
-$stmt->bind_param("ssdd", $data['temperature'], $data['description'], $data['humidity'], $data['wind_speed']);
+// Validate required data fields
+if (isset($data['temperature'], $data['description'], $data['humidity'], $data['wind_speed'])) {
+    $stmt = $mysqli->prepare("INSERT INTO weather_data (temperature, description, humidity, wind_speed) VALUES (?, ?, ?, ?)");
+    $stmt->bind_param("ssdd", $data['temperature'], $data['description'], $data['humidity'], $data['wind_speed']);
 
-if ($stmt->execute()) {
-    echo "Weather data saved successfully!";
+    if ($stmt->execute()) {
+        echo "Weather data saved successfully!";
+    } else {
+        echo "Error saving weather data.";
+    }
+
+    $stmt->close();
 } else {
-    echo "Error saving weather data.";
+    echo "Invalid input data.";
 }
 
-$stmt->close();
 $mysqli->close();
 ?>

@@ -1,5 +1,5 @@
 // OpenWeatherMap API configuration
-const apiKey = '3b4766a1ad259635f0e86e54694c9c73';
+const apiKey = 'YOUR_API_KEY';
 const city = 'Troy';
 const state = 'NY';
 
@@ -8,7 +8,9 @@ document.getElementById('fetch-weather').addEventListener('click', () => {
     fetch("https://api.openweathermap.org/data/2.5/weather?q=London,uk&APPID=3b4766a1ad259635f0e86e54694c9c73")
         .then(response => response.json())
         .then(data => {
-            console.log(data);
+            console.log(data); // Log the data for debugging
+
+            // Calculate temperature in Fahrenheit
             const temperatureF = ((data.main.temp - 273.15) * 9 / 5) + 32;
             const iconCode = data.weather[0].icon;
             const iconUrl = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
@@ -22,8 +24,9 @@ document.getElementById('fetch-weather').addEventListener('click', () => {
             `;
             document.getElementById('weather-icon').src = iconUrl;
             document.getElementById('weather-icon').alt = data.weather[0].description;
+            document.getElementById('weather-icon').style.display = 'block';
 
-            // Send weather data to PHP for saving in the database
+            // Save weather data to the database
             sendToServer('save_weather_data.php', {
                 temperature: temperatureF.toFixed(2),
                 description: data.weather[0].description,
@@ -35,24 +38,24 @@ document.getElementById('fetch-weather').addEventListener('click', () => {
 });
 
 // NASA APOD API configuration
-const nasaApiKey = 'J6MeTQuf5191Gf0BMAT1uj4CdScbuk5WgjtvzQXn';
+const nasaApiKey = 'YOUR_NASA_API_KEY';
 document.getElementById('fetch-astronomy').addEventListener('click', () => {
     fetch(`https://api.nasa.gov/planetary/apod?api_key=${nasaApiKey}`)
         .then(response => response.json())
         .then(data => {
-            console.log(data);
+            console.log(data); // Log the data for debugging
 
-            // Display astronomy data
+            // Display APOD data
             document.getElementById('apod-image').src = data.url;
             document.getElementById('apod-title').innerHTML = `Title: ${data.title}`;
             document.getElementById('apod-description').innerHTML = `Explanation: ${data.explanation}`;
+            document.getElementById('apod-image').style.display = 'block';
 
-            // Send astronomy data to PHP for saving in the database
+            // Save APOD data to the database
             sendToServer('save_astronomy_data.php', {
                 title: data.title,
                 explanation: data.explanation,
-                image_url: data.url,
-                date: data.date
+                image_url: data.url
             });
         })
         .catch(error => console.error('Error fetching astronomy data:', error));
@@ -70,6 +73,7 @@ function sendToServer(url, data) {
     .then(response => response.text())
     .then(data => {
         console.log('Server response:', data);
+        showPopup(); // Show popup after data is sent successfully
     })
     .catch(error => {
         console.error('Error sending data to server:', error);
@@ -96,7 +100,7 @@ function loadDataFromDatabase() {
                 <p>Wind Speed: ${weather.wind_speed} mph</p>
             `;
 
-            // Display astronomy data from database
+            // Display APOD data from database
             const astronomy = data.astronomy_data;
             document.getElementById('apod-image').src = astronomy.image_url;
             document.getElementById('apod-title').innerHTML = `Title: ${astronomy.title}`;
@@ -135,5 +139,21 @@ document.getElementById('update-apod').addEventListener('click', () => {
     });
 });
 
-// Attach the loadDataFromDatabase function to the button
+// Show popup function
+function showPopup() {
+    document.getElementById('popup-container').style.display = 'block';
+}
+
+// Close popup function
+document.getElementById('popup-close').addEventListener('click', () => {
+    document.getElementById('popup-container').style.display = 'none';
+});
+
+// Load data from database button in popup
+document.getElementById('popup-load-db').addEventListener('click', () => {
+    loadDataFromDatabase();
+    document.getElementById('popup-container').style.display = 'none';
+});
+
+// Attach the loadDataFromDatabase function to the main button
 document.getElementById('load-from-db').addEventListener('click', loadDataFromDatabase);

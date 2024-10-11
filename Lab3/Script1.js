@@ -38,9 +38,10 @@ document.getElementById('fetch-weather').addEventListener('click', () => {
 });
 
 // NASA APOD API configuration
-const nasaApiKey = 'YOUR_NASA_API_KEY';
+const nasaApiKey = 'J6MeTQuf5191Gf0BMAT1uj4CdScbuk5WgjtvzQXn';
 document.getElementById('fetch-astronomy').addEventListener('click', () => {
     fetch(`https://api.nasa.gov/planetary/apod?api_key=${nasaApiKey}`)
+
         .then(response => response.json())
         .then(data => {
             console.log(data); // Log the data for debugging

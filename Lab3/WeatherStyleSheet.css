@@ -1,3 +1,4 @@
+/* Global Styles */
 body {
     font-family: 'Helvetica Neue', Arial, sans-serif;
     background-image: url('licensed-image.jpg');
@@ -60,7 +61,6 @@ button {
 /* Specific Button Colors */
 .fetch-btn {
     background-color: #007BFF; /* Blue for Fetch buttons */
-    margin-bottom: -10px; /* Adjusted to reduce spacing before fetch */
 }
 
 .fetch-btn:hover {

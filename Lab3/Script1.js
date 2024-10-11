@@ -15,7 +15,7 @@ document.getElementById('fetch-weather').addEventListener('click', () => {
             const iconUrl = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
 
             // Display weather data
-            document.getElementById('temp-div').textContent = `Temperature: ${temperatureF.toFixed(2)}°F`;
+            document.getElementById('temp-div').innerHTML = `Temperature: ${temperatureF.toFixed(2)}°F`;
             document.getElementById('weather-info').innerHTML = `
                 <p>Weather: ${data.weather[0].description}</p>
                 <p>Humidity: ${data.main.humidity}%</p>
@@ -45,8 +45,8 @@ document.getElementById('fetch-astronomy').addEventListener('click', () => {
             console.log("NASA APOD data:", data); // Debugging log
 
             document.getElementById('apod-image').src = data.url;
-            document.getElementById('apod-title').textContent = `Title: ${data.title}`;
-            document.getElementById('apod-description').textContent = `Explanation: ${data.explanation}`;
+            document.getElementById('apod-title').innerHTML = `Title: ${data.title}`;
+            document.getElementById('apod-description').innerHTML = `Explanation: ${data.explanation}`;
             document.getElementById('apod-image').style.display = 'block';
 
             // Send APOD data to PHP

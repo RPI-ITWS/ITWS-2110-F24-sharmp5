@@ -110,7 +110,6 @@ function loadDataFromDatabase() {
         })
         .catch(error => console.error('Error loading data from the database:', error));
 }
-
 // Update weather and APOD data
 document.getElementById('update-weather').addEventListener('click', () => {
     const updatedWeather = {

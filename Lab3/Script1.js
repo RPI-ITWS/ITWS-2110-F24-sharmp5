@@ -74,7 +74,6 @@ function sendToServer(url, data) {
     .then(response => response.text())
     .then(data => {
         console.log('Server response:', data);
-        showPopup(); // Show popup after data is sent successfully
     })
     .catch(error => {
         console.error('Error sending data to server:', error);
@@ -119,12 +118,13 @@ document.getElementById('update-weather').addEventListener('click', () => {
 
     sendToServer('update_data.php', {
         weather_data: JSON.stringify({
-            temperature: newTemperature,
-            description: newDescription,
-            humidity: newHumidity,
-            wind_speed: newWindSpeed
+            temperature: newTemperature || null,
+            description: newDescription || null,
+            humidity: newHumidity || null,
+            wind_speed: newWindSpeed || null
         })
     });
+    showPopup(); // Only show popup after updates
 });
 
 // Update astronomy data with new input values
@@ -134,10 +134,11 @@ document.getElementById('update-apod').addEventListener('click', () => {
 
     sendToServer('update_data.php', {
         astronomy_data: JSON.stringify({
-            title: newApodTitle,
-            explanation: newApodDescription
+            title: newApodTitle || null,
+            explanation: newApodDescription || null
         })
     });
+    showPopup(); // Only show popup after updates
 });
 
 // Show popup function

@@ -100,6 +100,13 @@ function loadDataFromDatabase() {
                 document.getElementById('apod-title').textContent = `Title: ${astronomy.title}`;
                 document.getElementById('apod-description').textContent = `Explanation: ${astronomy.explanation}`;
             }
+            if (data.main && data.weather && data.weather[0]) {
+                // Display code here
+            } else {
+                console.error('Missing data in weather API response', data);
+                document.getElementById('temp-div').innerHTML = 'Weather data not available';
+            }
+            
         })
         .catch(error => console.error('Error loading data from the database:', error));
 }

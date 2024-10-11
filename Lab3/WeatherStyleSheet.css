@@ -124,12 +124,14 @@ input[type="text"] {
 }
 
 #temp-div, #weather-info, #apod-title, #apod-description {
-    display: none; /* Hide other content initially */
+    display: block; /* Ensure these are set to block to be visible */
     font-family: 'Verdana', sans-serif;
     font-size: 1em;
     text-align: center;
     margin-bottom: 10px;
     font-weight: bold; /* Make all displayed text bold */
+    }
+    
 }
 
 /* Popup Overlay */

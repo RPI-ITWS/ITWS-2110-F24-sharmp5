@@ -84,32 +84,39 @@ function loadDataFromDatabase() {
     fetch('load_data.php')
         .then(response => response.json())
         .then(data => {
+            if (!data) {
+                console.error('No data received from PHP');
+                return;
+            }
+
             const weather = data.weather_data;
             const astronomy = data.astronomy_data;
 
+            // Display weather data from database
             if (weather) {
-                document.getElementById('temp-div').textContent = `Temperature: ${weather.temperature}°F`;
+                document.getElementById('temp-div').innerHTML = `Temperature: ${weather.temperature}°F`;
                 document.getElementById('weather-info').innerHTML = `
                     <p>Weather: ${weather.description}</p>
                     <p>Humidity: ${weather.humidity}%</p>
                     <p>Wind Speed: ${weather.wind_speed} mph</p>
                 `;
+            } else {
+                console.warn('No weather data available in the database.');
             }
+
+            // Display APOD data from database
             if (astronomy) {
                 document.getElementById('apod-image').src = astronomy.image_url;
-                document.getElementById('apod-title').textContent = `Title: ${astronomy.title}`;
-                document.getElementById('apod-description').textContent = `Explanation: ${astronomy.explanation}`;
-            }
-            if (data.main && data.weather && data.weather[0]) {
-                // Display code here
+                document.getElementById('apod-title').innerHTML = `Title: ${astronomy.title}`;
+                document.getElementById('apod-description').innerHTML = `Explanation: ${astronomy.explanation}`;
+                document.getElementById('apod-image').style.display = 'block';
             } else {
-                console.error('Missing data in weather API response', data);
-                document.getElementById('temp-div').innerHTML = 'Weather data not available';
+                console.warn('No astronomy data available in the database.');
             }
-            
         })
         .catch(error => console.error('Error loading data from the database:', error));
 }
+
 // Update weather and APOD data
 document.getElementById('update-weather').addEventListener('click', () => {
     const updatedWeather = {
@@ -127,4 +134,21 @@ document.getElementById('update-apod').addEventListener('click', () => {
         explanation: document.getElementById('new-apod-description').value
     };
     sendToServer('update_data.php', { astronomy_data: JSON.stringify(updatedAstronomy) });
+});
+
+document.getElementById('update-apod').addEventListener('click', () => {
+    const newApodTitle = document.getElementById('new-apod-title').value;
+    const newApodDescription = document.getElementById('new-apod-description').value;
+
+    // Send updated astronomy data to server
+    sendToServer('update_data.php', {
+        astronomy_data: JSON.stringify({
+            title: newApodTitle,
+            explanation: newApodDescription,
+            image_url: document.getElementById('apod-image').src // Keep the same image URL
+        })
+    });
+
+    // Trigger the popup (if necessary) to confirm update
+    document.getElementById('popup-container').style.display = 'flex';
 });

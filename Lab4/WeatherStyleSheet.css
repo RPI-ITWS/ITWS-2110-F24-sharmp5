@@ -1,0 +1,93 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Container Styles */
+.container {
+    width: 80%;
+    max-width: 500px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Header Styles */
+h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    color: #4a90e2;
+}
+
+/* Buttons */
+button {
+    padding: 10px 20px;
+    margin-top: 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    background-color: #4a90e2;
+    color: #fff;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #357ABD;
+}
+
+.fetch-btn, .load-btn {
+    margin-top: 10px;
+    display: block;
+}
+
+/* Image Styles */
+img {
+    max-width: 100%;
+    border-radius: 5px;
+    margin-top: 15px;
+}
+
+/* Weather Data */
+#weather-icon {
+    margin-top: 10px;
+}
+
+/* Astronomy Data */
+#apod-image {
+    margin-top: 10px;
+}
+
+/* Update Form */
+#update-container input {
+    width: 90%;
+    padding: 8px;
+    margin: 8px 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+#update-container input:focus {
+    border-color: #4a90e2;
+    outline: none;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 600px) {
+    .container {
+        width: 90%;
+    }
+}

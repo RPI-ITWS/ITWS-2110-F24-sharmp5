@@ -8,30 +8,30 @@ document.getElementById('fetch-weather').addEventListener('click', () => {
     fetch("https://api.openweathermap.org/data/2.5/weather?q=London,uk&APPID=3b4766a1ad259635f0e86e54694c9c73")
         .then(response => response.json())
         .then(data => {
-            console.log("Weather data:", data); // Debugging log
+            if (data.main && data.weather && data.weather[0]) {
+                const temperatureF = ((data.main.temp - 273.15) * 9 / 5) + 32;
+                const iconCode = data.weather[0].icon;
+                const iconUrl = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
 
-            const temperatureF = ((data.main.temp - 273.15) * 9 / 5) + 32;
-            const iconCode = data.weather[0].icon;
-            const iconUrl = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
+                document.getElementById('temp-div').innerHTML = `Temperature: ${temperatureF.toFixed(2)}°F`;
+                document.getElementById('weather-info').innerHTML = `
+                    <p>Weather: ${data.weather[0].description}</p>
+                    <p>Humidity: ${data.main.humidity}%</p>
+                    <p>Wind Speed: ${(data.wind.speed * 2.23694).toFixed(2)} mph</p>
+                `;
+                document.getElementById('weather-icon').src = iconUrl;
+                document.getElementById('weather-icon').alt = data.weather[0].description;
+                document.getElementById('weather-icon').style.display = 'block';
 
-            // Display weather data
-            document.getElementById('temp-div').innerHTML = `Temperature: ${temperatureF.toFixed(2)}°F`;
-            document.getElementById('weather-info').innerHTML = `
-                <p>Weather: ${data.weather[0].description}</p>
-                <p>Humidity: ${data.main.humidity}%</p>
-                <p>Wind Speed: ${(data.wind.speed * 2.23694).toFixed(2)} mph</p>
-            `;
-            document.getElementById('weather-icon').src = iconUrl;
-            document.getElementById('weather-icon').alt = data.weather[0].description;
-            document.getElementById('weather-icon').style.display = 'block';
-
-            // Send weather data to PHP
-            sendToServer('save_weather_data.php', {
-                temperature: temperatureF.toFixed(2),
-                description: data.weather[0].description,
-                humidity: data.main.humidity,
-                wind_speed: (data.wind.speed * 2.23694).toFixed(2)
-            });
+                sendToServer('save_weather_data.php', {
+                    temperature: temperatureF.toFixed(2),
+                    description: data.weather[0].description,
+                    humidity: data.main.humidity,
+                    wind_speed: (data.wind.speed * 2.23694).toFixed(2)
+                });
+            } else {
+                console.error("Missing data in weather API response", data);
+            }
         })
         .catch(error => console.error('Error fetching weather data:', error));
 });
@@ -137,18 +137,21 @@ document.getElementById('update-apod').addEventListener('click', () => {
 });
 
 document.getElementById('update-apod').addEventListener('click', () => {
-    const newApodTitle = document.getElementById('new-apod-title').value;
-    const newApodDescription = document.getElementById('new-apod-description').value;
+    const newApodTitle = document.getElementById('new-apod-title').value.trim();
+    const newApodDescription = document.getElementById('new-apod-description').value.trim();
+    const apodImageUrl = document.getElementById('apod-image').src;
 
-    // Send updated astronomy data to server
-    sendToServer('update_data.php', {
-        astronomy_data: JSON.stringify({
-            title: newApodTitle,
-            explanation: newApodDescription,
-            image_url: document.getElementById('apod-image').src // Keep the same image URL
-        })
-    });
-
-    // Trigger the popup (if necessary) to confirm update
-    document.getElementById('popup-container').style.display = 'flex';
+    // Check if data is complete before sending
+    if (newApodTitle && newApodDescription && apodImageUrl) {
+        sendToServer('update_data.php', {
+            astronomy_data: JSON.stringify({
+                title: newApodTitle,
+                explanation: newApodDescription,
+                image_url: apodImageUrl
+            })
+        });
+    } else {
+        console.error("Incomplete astronomy data input");
+        alert("Please fill out all astronomy fields before updating.");
+    }
 });

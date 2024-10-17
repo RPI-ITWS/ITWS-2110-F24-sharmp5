@@ -34,23 +34,29 @@ if (isset($data['weather_data'])) {
     } else {
         echo "Invalid weather data input.";
     }
-} if (isset($data['astronomy_data'])) {
-    $astronomyData = json_decode($data['astronomy_data'], true);
-    $title = isset($astronomyData['title']) ? $conn->real_escape_string($astronomyData['title']) : '';
-    $explanation = isset($astronomyData['explanation']) ? $conn->real_escape_string($astronomyData['explanation']) : '';
-    $image_url = isset($astronomyData['image_url']) ? $conn->real_escape_string($astronomyData['image_url']) : '';
-
-    if (!empty($title) && !empty($explanation) && !empty($image_url)) {
-        $sql = "UPDATE astronomy_data SET title='$title', explanation='$explanation', image_url='$image_url' WHERE id=1";
-        if ($conn->query($sql) === TRUE) {
-            echo "Astronomy data updated successfully!";
+    if (isset($data['astronomy_data'])) {
+        $astronomyData = json_decode($data['astronomy_data'], true);
+    
+        // Check if all required fields are available
+        if (isset($astronomyData['title'], $astronomyData['explanation'], $astronomyData['image_url'])) {
+            $title = $conn->real_escape_string($astronomyData['title']);
+            $explanation = $conn->real_escape_string($astronomyData['explanation']);
+            $image_url = $conn->real_escape_string($astronomyData['image_url']);
+            
+            $sql = "UPDATE astronomy_data SET title='$title', explanation='$explanation', image_url='$image_url' WHERE id=1";
+            
+            if ($conn->query($sql) === TRUE) {
+                echo "Astronomy data updated successfully!";
+            } else {
+                echo "Error updating astronomy data: " . $conn->error;
+            }
         } else {
-            echo "Error updating astronomy data: " . $conn->error;
+            echo "Invalid astronomy data input.";
+            error_log("Invalid astronomy data: " . print_r($astronomyData, true)); // Log details for debugging
         }
     } else {
-        echo "Invalid astronomy data input.";
+        echo "Invalid data format.";
     }
-}
 
 $conn->close();
 ?>

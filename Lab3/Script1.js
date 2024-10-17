@@ -137,21 +137,23 @@ document.getElementById('update-apod').addEventListener('click', () => {
 });
 
 document.getElementById('update-apod').addEventListener('click', () => {
-    const newApodTitle = document.getElementById('new-apod-title').value.trim();
-    const newApodDescription = document.getElementById('new-apod-description').value.trim();
-    const apodImageUrl = document.getElementById('apod-image').src;
+    const newApodTitle = document.getElementById('new-apod-title').value;
+    const newApodDescription = document.getElementById('new-apod-description').value;
+    const imageUrl = document.getElementById('apod-image').src; // Use current image URL
 
-    // Check if data is complete before sending
-    if (newApodTitle && newApodDescription && apodImageUrl) {
+    // Ensure all fields are populated before sending
+    if (newApodTitle && newApodDescription && imageUrl) {
+        console.log("Sending APOD data:", { newApodTitle, newApodDescription, imageUrl });
+        
+        // Send the updated APOD data
         sendToServer('update_data.php', {
             astronomy_data: JSON.stringify({
                 title: newApodTitle,
                 explanation: newApodDescription,
-                image_url: apodImageUrl
+                image_url: imageUrl
             })
         });
     } else {
-        console.error("Incomplete astronomy data input");
-        alert("Please fill out all astronomy fields before updating.");
+        console.warn('APOD title, description, and image URL are required.');
     }
 });

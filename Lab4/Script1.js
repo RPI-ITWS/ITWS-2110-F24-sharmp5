@@ -2,12 +2,12 @@
 
 // OpenWeatherMap API configuration
 const weatherApiKey = '3b4766a1ad259635f0e86e54694c9c73';
-const city = 'Troy';
-const state = 'NY';
+const lat = 42.7302;  // Latitude for Troy, NY
+const lon = -73.6788; // Longitude for Troy, NY
 
 // Fetch weather data from OpenWeatherMap API
 document.getElementById('fetch-weather').addEventListener('click', () => {
-    fetch("https://api.openweathermap.org/data/2.5/weather?q=Troy,ny&APPID=3b4766a1ad259635f0e86e54694c9c73")
+    const weatherApiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=3b4766a1ad259635f0e86e54694c9c73`
         .then(response => response.json())
         .then(data => {
             if (data.main && data.weather && data.weather[0]) {

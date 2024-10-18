@@ -56,7 +56,7 @@ document.getElementById('fetch-astronomy').addEventListener('click', () => {
             document.getElementById('apod-image').style.display = 'block';
 
             // Send APOD data to the server
-            sendToServer('save_space_data.php', {
+            sendToServer('save_astronomy_data.php', {
                 title: data.title,
                 explanation: data.explanation,
                 image_url: data.url

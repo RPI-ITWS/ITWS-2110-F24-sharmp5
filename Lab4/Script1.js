@@ -41,6 +41,29 @@ const nasaApiUrl = `https://api.nasa.gov/planetary/apod?api_key=${nasaApiKey}`;
             .catch(error => console.error('Error fetching weather data:', error));
     });
 
+    // Update weather data
+    document.getElementById('update-weather').addEventListener('click', () => {
+        const updatedWeather = {
+            temperature: document.getElementById('new-temperature').value,
+            description: document.getElementById('new-weather-description').value,
+            humidity: document.getElementById('new-humidity').value,
+            wind_speed: document.getElementById('new-wind-speed').value
+        };
+
+        // Send updated weather data to the server
+        sendToServer('update_data.php', { climate_data: JSON.stringify(updatedWeather) })
+            .then(() => {
+                // Once updated, display the new values on the page
+                document.getElementById('temp-div').innerHTML = `Temperature: ${updatedWeather.temperature}°F`;
+                document.getElementById('weather-info').innerHTML = `
+                    <p>Weather: ${updatedWeather.description}</p>
+                    <p>Humidity: ${updatedWeather.humidity}%</p>
+                    <p>Wind Speed: ${updatedWeather.wind_speed} mph</p>
+                `;
+            })
+            .catch(error => console.error('Error updating weather data:', error));
+    });
+
     // Fetch NASA Astronomy Picture of the Day (APOD)
     document.getElementById('fetch-astronomy').addEventListener('click', () => {
         fetch(nasaApiUrl)

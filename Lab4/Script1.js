@@ -29,7 +29,7 @@ document.getElementById('fetch-weather').addEventListener('click', () => {
                 document.getElementById('weather-icon').style.display = 'block';
 
                 // Send weather data to the server
-                sendToServer('save_climate_data.php', {
+                sendToServer('save_weather_data.php', {
                     temperature: temperatureF.toFixed(2),
                     description: data.weather[0].description,
                     humidity: data.main.humidity,
@@ -123,7 +123,7 @@ function loadDataFromDatabase() {
         .catch(error => console.error('Error loading data from the database:', error));
 }
 
-// Update weather and APOD data
+// Update weather data
 document.getElementById('update-weather').addEventListener('click', () => {
     const updatedWeather = {
         temperature: document.getElementById('new-temperature').value,
@@ -134,6 +134,7 @@ document.getElementById('update-weather').addEventListener('click', () => {
     sendToServer('update_data.php', { climate_data: JSON.stringify(updatedWeather) });
 });
 
+// Update NASA APOD data
 document.getElementById('update-apod').addEventListener('click', () => {
     const updatedAstronomy = {
         title: document.getElementById('new-apod-title').value,

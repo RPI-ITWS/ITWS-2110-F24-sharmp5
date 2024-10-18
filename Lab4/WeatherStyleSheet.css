@@ -1,10 +1,11 @@
 /* General Styles */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f0f4f8;
+    background-image: url('space_background.jpg');
+    background-size: cover;
+    color: white;
     margin: 0;
     padding: 0;
-    color: #333;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -13,28 +14,38 @@ body {
 }
 
 h2, h3 {
-    color: #333;
+    text-align: center;
+    color: #fff;
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* API Containers Side by Side */
+.api-widgets {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 20px;
 }
 
 .container {
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.1);
     border-radius: 8px;
     padding: 20px;
-    margin: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 90%;
-    max-width: 600px;
-}
-
-#weather-container, #astronomy-container, #update-weather-container, #update-apod-container {
-    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 350px;
+    text-align: center;
 }
 
 img {
     max-width: 100%;
     height: auto;
     display: block;
-    margin: 0 auto 10px;
+    margin: 10px auto;
     border-radius: 8px;
 }
 
@@ -51,14 +62,12 @@ button {
     color: white;
     border: none;
     padding: 12px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
     font-size: 16px;
     margin-top: 10px;
     border-radius: 8px;
     cursor: pointer;
     transition: background-color 0.3s;
+    width: 100%;
 }
 
 button:hover {
@@ -74,18 +83,20 @@ button:hover {
 }
 
 #temp-div, #weather-info, #apod-title, #apod-description {
-    text-align: center;
     margin-top: 10px;
     font-size: 18px;
+    color: #fff;
 }
 
-#weather-icon {
-    width: 100px;
-    height: 100px;
+/* Center the Update Section */
+#update-section {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-top: 20px;
 }
 
 h2, h3 {
-    text-align: center;
     margin-bottom: 20px;
 }
-

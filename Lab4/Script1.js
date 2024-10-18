@@ -7,7 +7,7 @@ const state = 'NY';
 
 // Fetch weather data from OpenWeatherMap API
 document.getElementById('fetch-weather').addEventListener('click', () => {
-    fetch("https://api.openweathermap.org/data/2.5/weather?q=London,uk&APPID=3b4766a1ad259635f0e86e54694c9c73")
+    fetch("https://api.openweathermap.org/data/2.5/weather?q=Troy,ny&APPID=3b4766a1ad259635f0e86e54694c9c73")
         .then(response => response.json())
         .then(data => {
             if (data.main && data.weather && data.weather[0]) {

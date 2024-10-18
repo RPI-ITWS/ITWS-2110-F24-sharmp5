@@ -1,18 +1,23 @@
-// script.js
+// OpenWeatherMap API configuration for Troy, NY
+const weatherApiKey = '3b4766a1ad259635f0e86e54694c9c73';
+const weatherApiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=42.73&lon=-73.68&appid=${weatherApiKey}`;
 
-// OpenWeatherMap API configuration
+// NASA APOD API configuration
+const nasaApiKey = 'DEMO_KEY'; // Replace with your NASA API key if required
+const nasaApiUrl = `https://api.nasa.gov/planetary/apod?api_key=${nasaApiKey}`;
+
+// Fetch weather data from OpenWeatherMap API for Troy, NY
 document.getElementById('fetch-weather').addEventListener('click', () => {
-    const lat = 42.73; // Latitude for Troy, NY
-    const lon = -73.68; // Longitude for Troy, NY
-    
-    fetch(`https://api.openweathermap.org/data/2.5/weather?lat=42.73&lon=-73.68&appid='3b4766a1ad259635f0e86e54694c9c73'`)
+    fetch(weatherApiUrl)
         .then(response => response.json())
         .then(data => {
             if (data.main && data.weather && data.weather[0]) {
+                // Convert temperature from Kelvin to Fahrenheit
                 const temperatureF = ((data.main.temp - 273.15) * 9 / 5) + 32;
                 const iconCode = data.weather[0].icon;
                 const iconUrl = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
 
+                // Display weather data in the UI
                 document.getElementById('temp-div').innerHTML = `Temperature: ${temperatureF.toFixed(2)}°F`;
                 document.getElementById('weather-info').innerHTML = `
                     <p>Weather: ${data.weather[0].description}</p>
@@ -23,6 +28,7 @@ document.getElementById('fetch-weather').addEventListener('click', () => {
                 document.getElementById('weather-icon').alt = data.weather[0].description;
                 document.getElementById('weather-icon').style.display = 'block';
 
+                // Send weather data to the server
                 sendToServer('save_climate_data.php', {
                     temperature: temperatureF.toFixed(2),
                     description: data.weather[0].description,
@@ -36,20 +42,20 @@ document.getElementById('fetch-weather').addEventListener('click', () => {
         .catch(error => console.error('Error fetching weather data:', error));
 });
 
-// NASA APOD API configuration
-const nasaApiKey = 'DEMO_KEY'; // Replace with your own key if required
+// Fetch NASA Astronomy Picture of the Day (APOD) from NASA API
 document.getElementById('fetch-astronomy').addEventListener('click', () => {
-    fetch(`https://api.nasa.gov/planetary/apod?api_key=${nasaApiKey}`)
+    fetch(nasaApiUrl)
         .then(response => response.json())
         .then(data => {
             console.log("NASA APOD data:", data); // Debugging log
 
+            // Display APOD data in the UI
             document.getElementById('apod-image').src = data.url;
             document.getElementById('apod-title').innerHTML = `Title: ${data.title}`;
             document.getElementById('apod-description').innerHTML = `Explanation: ${data.explanation}`;
             document.getElementById('apod-image').style.display = 'block';
 
-            // Send APOD data to PHP
+            // Send APOD data to the server
             sendToServer('save_space_data.php', {
                 title: data.title,
                 explanation: data.explanation,
@@ -59,7 +65,7 @@ document.getElementById('fetch-astronomy').addEventListener('click', () => {
         .catch(error => console.error('Error fetching APOD data:', error));
 });
 
-// Send data to server via POST
+// Send data to the server via POST request
 function sendToServer(url, data) {
     fetch(url, {
         method: 'POST',

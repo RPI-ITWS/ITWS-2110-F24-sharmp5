@@ -1,10 +1,10 @@
 /* General Styles */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
-    color: #333;
+    background-color: #f0f4f8;
     margin: 0;
-    padding: 20px;
+    padding: 0;
+    color: #333;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -12,82 +12,80 @@ body {
     min-height: 100vh;
 }
 
-/* Container Styles */
+h2, h3 {
+    color: #333;
+}
+
 .container {
-    width: 80%;
-    max-width: 500px;
-    background-color: #fff;
+    background-color: white;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
     padding: 20px;
-    text-align: center;
+    margin: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 600px;
 }
 
-/* Header Styles */
-h2 {
-    font-size: 1.5em;
-    margin-bottom: 10px;
-    color: #4a90e2;
+#weather-container, #astronomy-container, #update-weather-container, #update-apod-container {
+    margin-bottom: 20px;
 }
 
-/* Buttons */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto 10px;
+    border-radius: 8px;
+}
+
+input {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
 button {
-    padding: 10px 20px;
-    margin-top: 15px;
+    background-color: #4CAF50;
+    color: white;
     border: none;
-    border-radius: 5px;
-    font-size: 1em;
+    padding: 12px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-top: 10px;
+    border-radius: 8px;
     cursor: pointer;
-    background-color: #4a90e2;
-    color: #fff;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s;
 }
 
 button:hover {
-    background-color: #357ABD;
+    background-color: #45a049;
 }
 
-.fetch-btn, .load-btn {
+.fetch-btn {
+    background-color: #1e90ff;
+}
+
+.fetch-btn:hover {
+    background-color: #1c86ee;
+}
+
+#temp-div, #weather-info, #apod-title, #apod-description {
+    text-align: center;
     margin-top: 10px;
-    display: block;
+    font-size: 18px;
 }
 
-/* Image Styles */
-img {
-    max-width: 100%;
-    border-radius: 5px;
-    margin-top: 15px;
-}
-
-/* Weather Data */
 #weather-icon {
-    margin-top: 10px;
+    width: 100px;
+    height: 100px;
 }
 
-/* Astronomy Data */
-#apod-image {
-    margin-top: 10px;
+h2, h3 {
+    text-align: center;
+    margin-bottom: 20px;
 }
 
-/* Update Form */
-#update-container input {
-    width: 90%;
-    padding: 8px;
-    margin: 8px 0;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    box-sizing: border-box;
-}
-
-#update-container input:focus {
-    border-color: #4a90e2;
-    outline: none;
-}
-
-/* Mobile Responsiveness */
-@media (max-width: 600px) {
-    .container {
-        width: 90%;
-    }
-}

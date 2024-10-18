@@ -1,17 +1,17 @@
-// OpenWeatherMap API configuration
-const apiKey = '3b4766a1ad259635f0e86e54694c9c73';
-const city = 'Troy';
-const state = 'NY';
 
-// Fetch weather data from OpenWeatherMap API
-document.getElementById('fetch-weather').addEventListener('click', () => {
-    fetch("https://api.openweathermap.org/data/2.5/weather?q=London,uk&APPID=3b4766a1ad259635f0e86e54694c9c73")
-        .then(response => response.json())
-        .then(data => {
-            if (data.main && data.weather && data.weather[0]) {
-                const temperatureF = ((data.main.temp - 273.15) * 9 / 5) + 32;
-                const iconCode = data.weather[0].icon;
-                const iconUrl = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
+const weatherApiKey = '3b4766a1ad259635f0e86e54694c9c73';
+const weatherApiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=42.73&lon=-73.68&appid=${weatherApiKey}`;
+
+    // Fetch weather data from OpenWeatherMap API for Troy, NY
+    document.getElementById('fetch-weather').addEventListener('click', () => {
+        fetch(weatherApiUrl)
+            .then(response => response.json())
+            .then(data => {
+                if (data.main && data.weather && data.weather[0]) {
+                    const temperatureF = ((data.main.temp - 273.15) * 9 / 5) + 32;
+                    const iconCode = data.weather[0].icon;
+                    const iconUrl = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
+
 
                 document.getElementById('temp-div').innerHTML = `Temperature: ${temperatureF.toFixed(2)}°F`;
                 document.getElementById('weather-info').innerHTML = `

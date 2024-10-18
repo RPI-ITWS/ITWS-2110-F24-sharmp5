@@ -5,7 +5,7 @@ document.getElementById('fetch-weather').addEventListener('click', () => {
     const lat = 42.73; // Latitude for Troy, NY
     const lon = -73.68; // Longitude for Troy, NY
     
-    fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid='3b4766a1ad259635f0e86e54694c9c73'`)
+    fetch(`https://api.openweathermap.org/data/2.5/weather?lat=42.73&lon=-73.68&appid='3b4766a1ad259635f0e86e54694c9c73'`)
         .then(response => response.json())
         .then(data => {
             if (data.main && data.weather && data.weather[0]) {

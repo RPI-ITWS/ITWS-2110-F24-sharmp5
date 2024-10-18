@@ -7,7 +7,7 @@ const state = 'NY';
 
 // Fetch weather data from OpenWeatherMap API
 document.getElementById('fetch-weather').addEventListener('click', () => {
-    fetch(`https://api.openweathermap.org/data/2.5/weather?q=3b4766a1ad259635f0e86e54694c9c73`)
+    fetch("https://api.openweathermap.org/data/2.5/weather?q=London,uk&APPID=3b4766a1ad259635f0e86e54694c9c73")
         .then(response => response.json())
         .then(data => {
             if (data.main && data.weather && data.weather[0]) {
@@ -25,7 +25,7 @@ document.getElementById('fetch-weather').addEventListener('click', () => {
                 document.getElementById('weather-icon').alt = data.weather[0].description;
                 document.getElementById('weather-icon').style.display = 'block';
 
-                sendToServer('save_weather_data.php', {
+                sendToServer('save_climate_data.php', {
                     temperature: temperatureF.toFixed(2),
                     description: data.weather[0].description,
                     humidity: data.main.humidity,
@@ -52,7 +52,7 @@ document.getElementById('fetch-astronomy').addEventListener('click', () => {
             document.getElementById('apod-image').style.display = 'block';
 
             // Send APOD data to PHP
-            sendToServer('save_astronomy_data.php', {
+            sendToServer('save_space_data.php', {
                 title: data.title,
                 explanation: data.explanation,
                 image_url: data.url
@@ -91,8 +91,8 @@ function loadDataFromDatabase() {
                 return;
             }
 
-            const weather = data.weather_data;
-            const astronomy = data.astronomy_data;
+            const weather = data.climate_data;
+            const astronomy = data.space_data;
 
             // Display weather data from database
             if (weather) {
@@ -127,7 +127,7 @@ document.getElementById('update-weather').addEventListener('click', () => {
         humidity: document.getElementById('new-humidity').value,
         wind_speed: document.getElementById('new-wind-speed').value
     };
-    sendToServer('update_data.php', { weather_data: JSON.stringify(updatedWeather) });
+    sendToServer('update_data.php', { climate_data: JSON.stringify(updatedWeather) });
 });
 
 document.getElementById('update-apod').addEventListener('click', () => {
@@ -135,5 +135,5 @@ document.getElementById('update-apod').addEventListener('click', () => {
         title: document.getElementById('new-apod-title').value,
         explanation: document.getElementById('new-apod-description').value
     };
-    sendToServer('update_data.php', { astronomy_data: JSON.stringify(updatedAstronomy) });
+    sendToServer('update_data.php', { space_data: JSON.stringify(updatedAstronomy) });
 });

@@ -1,6 +1,6 @@
 <?php
 // Connect to the MySQL database
-$mysqli = new mysqli("localhost", "root", "password", "myquizdb");
+$mysqli = new mysqli("localhost", "root", "Pranay36951!!", "myquizdb");
 
 // Check for connection errors
 if ($mysqli->connect_error) {

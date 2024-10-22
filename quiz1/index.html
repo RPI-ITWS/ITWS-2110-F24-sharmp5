@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weather & Exchange Rates App</title>
+    <title>Weather, Exchange Rates, & NASA APOD</title>
     <link rel="stylesheet" href="quizstyle.css">
 </head>
 <body>
     <div class="main-container">
-        <h1>Weather & Exchange Rates Dashboard</h1>
+        <h1>Weather, Exchange Rates, & NASA APOD</h1>
         
         <!-- Weather Section -->
         <div id="weather-container" class="container">
@@ -24,6 +24,15 @@
             <h2>Exchange Rates</h2>
             <div id="exchange-info"></div>
             <button id="fetch-exchange">Fetch Exchange Rates</button>
+        </div>
+
+        <!-- NASA APOD Section -->
+        <div id="apod-container" class="container">
+            <h2>NASA Astronomy Picture of the Day</h2>
+            <img id="apod-image" alt="Astronomy Picture of the Day" style="display: none;">
+            <div id="apod-title"></div>
+            <div id="apod-description"></div>
+            <button id="fetch-astronomy">Fetch NASA APOD</button>
         </div>
     </div>
 

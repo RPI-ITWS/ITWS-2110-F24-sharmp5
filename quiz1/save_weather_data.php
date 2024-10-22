@@ -1,5 +1,5 @@
 <?php
-$mysqli = new mysqli("localhost", "root", "Pranay36951!!", "myappdb");
+$mysqli = new mysqli("localhost", "root", "Pranay36951!!", "myquizdb");
 
 if ($mysqli->connect_error) {
     die("Connection failed: " . $mysqli->connect_error);

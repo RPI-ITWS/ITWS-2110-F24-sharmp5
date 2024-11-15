@@ -3,52 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weather and Astronomy App</title>
-    <link rel="stylesheet" href="WeatherStyleSheet.css">
+    <title>Weather & Astronomy App</title>
+    <link rel="stylesheet" href="quizstyle.css">
 </head>
 <body>
     <div class="main-container">
-        <!-- API Containers Side by Side -->
-        <div class="api-widgets">
-            <!-- Weather Section -->
-            <div id="weather-container" class="container">
-                <h2>Weather Data for Troy, NY</h2>
-                <img id="weather-icon" alt="Weather Icon" style="display: none;">
-                <div id="temp-div"></div>
-                <div id="weather-info"></div>
-                <button id="fetch-weather" class="fetch-btn">Fetch Weather Data</button>
-            </div>
-
-            <!-- Astronomy Section -->
-            <div id="astronomy-container" class="container">
-                <h2>NASA Astronomy Picture of the Day</h2>
-                <img id="apod-image" alt="Astronomy Picture of the Day" style="display: none;">
-                <div id="apod-title"></div>
-                <div id="apod-description"></div>
-                <button id="fetch-astronomy" class="fetch-btn">Fetch Astronomy Data</button>
-            </div>
+        <!-- Weather Section -->
+        <div id="weather-container" class="widget">
+            <h2>Current Weather in Troy, NY</h2>
+            <img id="weather-icon" alt="Weather Icon" style="display: none;">
+            <div id="temp-div"></div>
+            <div id="weather-info"></div>
+            <button id="fetch-weather">Fetch Weather Data</button>
         </div>
 
-        <!-- Update Containers Centered Underneath -->
-        <div id="update-section">
-            <div id="update-weather-container" class="container">
-                <h3>Update Weather Data</h3>
-                <input id="new-temperature" placeholder="New Temperature">
-                <input id="new-weather-description" placeholder="New Weather Description">
-                <input id="new-humidity" placeholder="New Humidity">
-                <input id="new-wind-speed" placeholder="New Wind Speed">
-                <button id="update-weather">Update Weather</button>
-            </div>
+        <!-- Exchange Rate Section -->
+        <div id="exchange-container" class="widget">
+            <h2>Currency Exchange Rates</h2>
+            <div id="exchange-info"></div>
+            <button id="fetch-exchange">Fetch Exchange Rates</button>
+        </div>
 
-            <div id="update-apod-container" class="container">
-                <h3>Update NASA APOD Data</h3>
-                <input id="new-apod-title" placeholder="New APOD Title">
-                <input id="new-apod-description" placeholder="New APOD Description">
-                <button id="update-apod">Update APOD</button>
-            </div>
+        <!-- NASA APOD Section -->
+        <div id="astronomy-container" class="widget">
+            <h2>Astronomy Picture of the Day</h2>
+            <img id="apod-image" alt="Astronomy Image" style="display: none;">
+            <div id="apod-title"></div>
+            <div id="apod-description"></div>
+            <button id="fetch-astronomy">Fetch Astronomy Data</button>
         </div>
     </div>
 
-    <script src="Script1.js"></script>
+    <!-- Update Section -->
+    <div id="update-container">
+        <h3>Update Data</h3>
+        <input id="new-temperature" placeholder="New Temperature">
+        <input id="new-weather-description" placeholder="New Weather Description">
+        <input id="new-humidity" placeholder="New Humidity">
+        <input id="new-wind-speed" placeholder="New Wind Speed">
+        <button id="update-weather">Update Weather</button>
+        <input id="new-apod-title" placeholder="New APOD Title">
+        <input id="new-apod-description" placeholder="New APOD Description">
+        <button id="update-apod">Update Astronomy</button>
+    </div>
+
+    <script src="Script2.js"></script>
 </body>
 </html>

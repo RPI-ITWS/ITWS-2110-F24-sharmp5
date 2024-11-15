@@ -1,166 +1,54 @@
-/* Global Styles */
 body {
-    font-family: 'Helvetica Neue', Arial, sans-serif;
-    background-image: url('licensed-image.jpg');
-    background-size: cover;
-    color: black;
+    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    background-color: #f0f4fa;
+    color: #333;
 }
 
-/* Container Styling with Black Border */
-#weather-container, #astronomy-container, #update-container {
-    border: 3px solid black; /* Thick black border around each container */
-    border-radius: 10px;
+header {
+    background-color: #5c8a8a;
+    color: white;
     padding: 20px;
-    margin: 20px;
-    width: 80%;
-    max-width: 500px;
     text-align: center;
-    color: black;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-#weather-container {
-    background: rgba(211, 211, 211, 0.85); /* opaque light grey */
+.security-note {
+    font-size: 0.9em;
+    margin-top: 5px;
 }
 
-#astronomy-container {
-    background: rgba(255, 255, 255, 0.85); /* opaque white */
+.container {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    padding: 20px;
+    max-width: 600px;
 }
 
-#update-container {
-    background: rgba(245, 222, 179, 0.85); /* light tan */
+h2 {
+    color: #5c8a8a;
+    border-bottom: 2px solid #5c8a8a;
+    padding-bottom: 5px;
 }
 
-/* Title Styling */
-h2, h3 {
-    font-family: Arial, sans-serif;
-    font-size: 1.8em;
-    font-weight: bold;
-    color: #333; /* Dark color for contrast */
-    margin-top: 0;
-}
-
-/* Shared Style for Buttons */
 button {
+    background-color: #5c8a8a;
     color: white;
-    border: 2px solid black; /* Thicker black stroke around all buttons */
-    padding: 12px 24px;
-    font-size: 16px;
-    font-weight: bold;
-    border-radius: 8px;
-    margin: 10px 0;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s, border-color 0.3s;
 }
 
-/* Specific Button Colors */
-.fetch-btn {
-    background-color: #007BFF; /* Blue for Fetch buttons */
+button:hover {
+    background-color: #4a7575;
 }
 
-.fetch-btn:hover {
-    background-color: #0056b3; /* Darker blue on hover */
-}
-
-/* Update Button Colors */
-#update-weather, #update-apod {
-    background-color: #a9a9a9; /* Slightly darker grey for Update buttons */
-    color: white;
-}
-
-#update-weather:hover, #update-apod:hover {
-    background-color: #7d7d7d; /* Even darker grey on hover */
-}
-
-/* Style for Load Data from Database buttons */
-#load-from-db, #popup-load-db {
-    background-color: #FFA500; /* Orange background */
-}
-
-#load-from-db:hover, #popup-load-db:hover {
-    background-color: #e59400; /* Darker orange on hover */
-}
-
-/* Style for Not Yet button */
-#popup-close {
-    background-color: #888888; /* Grey background */
-    color: white;
-}
-
-#popup-close:hover {
-    background-color: #666666; /* Darker grey on hover */
-}
-
-/* Text Input Styling */
-input[type="text"] {
-    width: 80%;
+footer {
+    text-align: center;
     padding: 10px;
-    margin: 8px 0;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-    font-size: 16px;
-    box-sizing: border-box;
-    text-align: center;
-    font-weight: bold; /* Make all input text bold */
-}
-
-/* Centering content in containers */
-#weather-container, #astronomy-container, #update-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-#weather-icon, #apod-image {
-    display: none; /* Hide weather icon and APOD image initially */
-    width: 60%;
-    height: auto;
-    margin: 10px 0;
-}
-
-#temp-div, #weather-info, #apod-title, #apod-description {
-    display: block; /* Ensure these are set to block to be visible */
-    font-family: 'Verdana', sans-serif;
-    font-size: 1em;
-    text-align: center;
-    margin-bottom: 10px;
-    font-weight: bold; /* Make all displayed text bold */
-    }
-    
-}
-
-/* Popup Overlay */
-#popup-container {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5); /* semi-transparent background */
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-}
-
-/* Popup Content Box */
-#popup-content {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    text-align: center;
-    width: 80%;
-    max-width: 400px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-#popup-content p {
-    font-size: 1.1em;
-    margin: 10px 0;
-    font-weight: bold;
+    background-color: #5c8a8a;
+    color: white;
 }

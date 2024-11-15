@@ -14,7 +14,7 @@
             <img id="weather-icon" alt="Weather Icon" style="display: none;">
             <div id="temp-div"></div>
             <div id="weather-info"></div>
-            <button id="fetch-weather">Fetch Weather Data</button>
+            <button id="fetch-weather">🌤️ Fetch Weather Data</button>
         </div>
 
         <!-- NASA APOD Section -->
@@ -23,21 +23,25 @@
             <img id="apod-image" alt="Astronomy Image" style="display: none;">
             <div id="apod-title"></div>
             <div id="apod-description"></div>
-            <button id="fetch-astronomy">Fetch Astronomy Data</button>
+            <button id="fetch-astronomy">🚀 Fetch Astronomy Data</button>
         </div>
     </div>
 
     <!-- Update Section -->
     <div id="update-container">
         <h3>Update Data</h3>
-        <input id="new-temperature" placeholder="New Temperature">
-        <input id="new-weather-description" placeholder="New Weather Description">
-        <input id="new-humidity" placeholder="New Humidity">
-        <input id="new-wind-speed" placeholder="New Wind Speed">
-        <button id="update-weather">Update Weather</button>
-        <input id="new-apod-title" placeholder="New APOD Title">
-        <input id="new-apod-description" placeholder="New APOD Description">
-        <button id="update-apod">Update Astronomy</button>
+        <div class="input-group">
+            <input id="new-temperature" placeholder="New Temperature">
+            <input id="new-weather-description" placeholder="New Weather Description">
+            <input id="new-humidity" placeholder="New Humidity">
+            <input id="new-wind-speed" placeholder="New Wind Speed">
+            <button id="update-weather">Update Weather</button>
+        </div>
+        <div class="input-group">
+            <input id="new-apod-title" placeholder="New APOD Title">
+            <input id="new-apod-description" placeholder="New APOD Description">
+            <button id="update-apod">Update Astronomy</button>
+        </div>
     </div>
 
     <script src="Script1.js"></script>

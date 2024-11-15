@@ -1,6 +1,5 @@
 const weatherApiKey = '3b4766a1ad259635f0e86e54694c9c73';
 const weatherApiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=42.73&lon=-73.68&appid=${weatherApiKey}`;
-const frankfurterApiUrl = 'https://api.frankfurter.app/latest';
 const nasaApiKey = 'DEMO_KEY';
 const nasaApiUrl = `https://api.nasa.gov/planetary/apod?api_key=${nasaApiKey}`;
 
@@ -20,28 +19,6 @@ document.getElementById('fetch-weather').addEventListener('click', () => {
             `;
             document.getElementById('weather-icon').src = iconUrl;
             document.getElementById('weather-icon').style.display = 'block';
-
-            // Add Timestamp
-            const timestamp = new Date().toLocaleString();
-            document.getElementById('temp-div').insertAdjacentHTML('afterend', `<p>Last Updated: ${timestamp}</p>`);
-        })
-        .catch(err => console.error(err));
-});
-
-// Fetch Exchange Rates
-document.getElementById('fetch-exchange').addEventListener('click', () => {
-    fetch(frankfurterApiUrl)
-        .then(response => response.json())
-        .then(data => {
-            let rates = `<p>Base Currency: ${data.base}</p><p>Date: ${data.date}</p>`;
-            for (const [currency, rate] of Object.entries(data.rates)) {
-                rates += `<p>${currency}: ${rate}</p>`;
-            }
-            document.getElementById('exchange-info').innerHTML = rates;
-
-            // Add Timestamp
-            const timestamp = new Date().toLocaleString();
-            document.getElementById('exchange-info').insertAdjacentHTML('afterend', `<p>Last Updated: ${timestamp}</p>`);
         })
         .catch(err => console.error(err));
 });
@@ -55,10 +32,6 @@ document.getElementById('fetch-astronomy').addEventListener('click', () => {
             document.getElementById('apod-description').innerText = `Explanation: ${data.explanation}`;
             document.getElementById('apod-image').src = data.url;
             document.getElementById('apod-image').style.display = 'block';
-
-            // Add Timestamp
-            const timestamp = new Date().toLocaleString();
-            document.getElementById('apod-title').insertAdjacentHTML('afterend', `<p>Last Updated: ${timestamp}</p>`);
         })
         .catch(err => console.error(err));
 });

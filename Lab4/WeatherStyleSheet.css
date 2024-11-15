@@ -1,55 +1,110 @@
+/* General Styling */
 body {
-    font-family: Arial, sans-serif;
-    background-image: url('space_background.jpg');
-    background-size: cover;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(to bottom, #1e1e2f, #3e3e5e);
+    color: #f3f3f3;
     margin: 0;
     padding: 0;
-    color: #fff;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
 }
 
-h2 {
-    color: #ffcc00;
+/* Section Headers */
+h2, h3 {
+    color: #ffd700;
+    font-size: 1.8rem;
     margin-bottom: 10px;
+    text-shadow: 2px 2px 5px #000;
 }
 
+/* Main Widget Styling */
 .widget {
-    background: rgba(0, 0, 0, 0.7);
-    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
     padding: 20px;
     margin: 15px;
-    display: inline-block;
     width: 30%;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    display: inline-block;
+    animation: fadeIn 1s ease-in-out;
 }
 
+.main-container {
+    display: flex;
+    justify-content: space-around;
+    width: 90%;
+}
+
+/* Buttons */
 button {
-    background-color: #0066ff;
+    background-color: #ff4500;
     color: white;
     border: none;
     padding: 10px 20px;
     margin-top: 10px;
-    border-radius: 5px;
+    border-radius: 8px;
+    font-size: 1rem;
     cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
 }
 
 button:hover {
-    background-color: #004db3;
+    background-color: #ff6347;
+    transform: scale(1.05);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
 }
 
-#update-container {
-    margin-top: 20px;
-    padding: 20px;
-    background: rgba(0, 0, 0, 0.8);
-    border-radius: 10px;
-    width: 80%;
-    margin: 0 auto;
-}
-
+/* Input Fields */
 input {
-    padding: 8px;
-    margin: 5px;
-    border-radius: 5px;
-    border: none;
-    width: calc(100% - 20px);
+    padding: 10px;
+    margin: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    width: calc(80% - 20px);
+    background-color: rgba(255, 255, 255, 0.8);
+    color: #000;
+    font-size: 1rem;
+    transition: border 0.3s ease;
+}
+
+input:focus {
+    border-color: #ff4500;
+    outline: none;
+}
+
+/* Update Container */
+#update-container {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    margin: 15px;
+    border-radius: 15px;
+    width: 80%;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Images */
+img {
+    border-radius: 10px;
+    max-width: 100%;
+    max-height: 250px;
+    margin-top: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }

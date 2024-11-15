@@ -1,22 +1,22 @@
 <?php
-$mysqli = new mysqli("localhost", "root", "Pranay36951!!", "myappdb");
+$mysqli = new mysqli("localhost", "root", "your_password", "myquizdb");
 
 if ($mysqli->connect_error) {
     die("Connection failed: " . $mysqli->connect_error);
 }
 
-// Fetch the latest climate data
-$climate_result = $mysqli->query("SELECT * FROM climate_data ORDER BY id DESC LIMIT 1");
-$climate_data = $climate_result->fetch_assoc();
+// Fetch the latest weather data
+$weather_result = $mysqli->query("SELECT * FROM climate_data ORDER BY id DESC LIMIT 1");
+$weather_data = $weather_result->fetch_assoc();
 
-// Fetch the latest space data
-$space_result = $mysqli->query("SELECT * FROM space_data ORDER BY id DESC LIMIT 1");
-$space_data = $space_result->fetch_assoc();
+// Fetch the latest APOD data
+$apod_result = $mysqli->query("SELECT * FROM apod_data ORDER BY id DESC LIMIT 1");
+$apod_data = $apod_result->fetch_assoc();
 
 // Combine and output the data as JSON
 $response = [
-    "climate_data" => $climate_data,
-    "space_data" => $space_data
+    "weather_data" => $weather_data,
+    "apod_data" => $apod_data
 ];
 
 header('Content-Type: application/json');

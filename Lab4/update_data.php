@@ -1,59 +1,52 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+$mysqli = new mysqli("localhost", "root", "your_password", "myquizdb");
 
-$host = 'localhost';
-$user = 'root';
-$password = 'Pranay36951!!';
-$dbname = 'myappdb';
-
-$conn = new mysqli($host, $user, $password, $dbname);
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+if ($mysqli->connect_error) {
+    die("Connection failed: " . $mysqli->connect_error);
 }
 
-$data = json_decode(file_get_contents('php://input'), true);
+$data = json_decode(file_get_contents("php://input"), true);
 
-if (isset($data['climate_data'])) {
-    $climateData = json_decode($data['climate_data'], true);
-    
-    if (isset($climateData['temperature'], $climateData['description'], $climateData['humidity'], $climateData['wind_speed'])) {
-        $temperature = $conn->real_escape_string($climateData['temperature']);
-        $description = $conn->real_escape_string($climateData['description']);
-        $humidity = $conn->real_escape_string($climateData['humidity']);
-        $wind_speed = $conn->real_escape_string($climateData['wind_speed']);
+// Update weather data
+if (isset($data['weather_data'])) {
+    $weatherData = json_decode($data['weather_data'], true);
+
+    if (isset($weatherData['temperature'], $weatherData['description'], $weatherData['humidity'], $weatherData['wind_speed'])) {
+        $temperature = $mysqli->real_escape_string($weatherData['temperature']);
+        $description = $mysqli->real_escape_string($weatherData['description']);
+        $humidity = $mysqli->real_escape_string($weatherData['humidity']);
+        $wind_speed = $mysqli->real_escape_string($weatherData['wind_speed']);
 
         $sql = "UPDATE climate_data SET temperature='$temperature', description='$description', humidity='$humidity', wind_speed='$wind_speed' ORDER BY id DESC LIMIT 1";
-        if ($conn->query($sql) === TRUE) {
-            echo "Climate data updated successfully!";
+        if ($mysqli->query($sql) === TRUE) {
+            echo "Weather data updated successfully!";
         } else {
-            echo "Error updating climate data: " . $conn->error;
+            echo "Error updating weather data: " . $mysqli->error;
         }
     } else {
-        echo "Invalid climate data input.";
+        echo "Invalid weather data input.";
     }
-} elseif (isset($data['space_data'])) {
-    $spaceData = json_decode($data['space_data'], true);
-    
-    if (isset($spaceData['title'], $spaceData['explanation'], $spaceData['image_url'])) {
-        $title = $conn->real_escape_string($spaceData['title']);
-        $explanation = $conn->real_escape_string($spaceData['explanation']);
-        $image_url = $conn->real_escape_string($spaceData['image_url']);
-
-        $sql = "UPDATE space_data SET title='$title', explanation='$explanation', image_url='$image_url' ORDER BY id DESC LIMIT 1";
-        if ($conn->query($sql) === TRUE) {
-            echo "Space data updated successfully!";
-        } else {
-            echo "Error updating space data: " . $conn->error;
-        }
-    } else {
-        echo "Invalid space data input.";
-    }
-} else {
-    echo "Invalid data format.";
 }
 
-$conn->close();
+// Update APOD data
+if (isset($data['apod_data'])) {
+    $apodData = json_decode($data['apod_data'], true);
+
+    if (isset($apodData['title'], $apodData['explanation'], $apodData['image_url'])) {
+        $title = $mysqli->real_escape_string($apodData['title']);
+        $explanation = $mysqli->real_escape_string($apodData['explanation']);
+        $image_url = $mysqli->real_escape_string($apodData['image_url']);
+
+        $sql = "UPDATE apod_data SET title='$title', explanation='$explanation', image_url='$image_url' ORDER BY id DESC LIMIT 1";
+        if ($mysqli->query($sql) === TRUE) {
+            echo "APOD data updated successfully!";
+        } else {
+            echo "Error updating APOD data: " . $mysqli->error;
+        }
+    } else {
+        echo "Invalid APOD data input.";
+    }
+}
+
+$mysqli->close();
 ?>

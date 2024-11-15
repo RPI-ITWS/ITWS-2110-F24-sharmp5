@@ -8,6 +8,11 @@
 </head>
 <body>
     <div class="main-container">
+        <!-- Welcome Message -->
+        <div class="welcome-message">
+            <p>Welcome to the Weather and Astronomy App! Here you can view real-time weather data for Troy, NY, and the NASA Astronomy Picture of the Day (APOD).</p>
+        </div>
+
         <!-- API Containers Side by Side -->
         <div class="api-widgets">
             <!-- Weather Section -->
@@ -16,7 +21,7 @@
                 <img id="weather-icon" alt="Weather Icon" style="display: none;">
                 <div id="temp-div"></div>
                 <div id="weather-info"></div>
-                <button id="fetch-weather" class="fetch-btn">Fetch Weather Data</button>
+                <button id="fetch-weather" class="fetch-btn" title="Click to fetch current weather data">🌤️ Fetch Weather Data</button>
             </div>
 
             <!-- Astronomy Section -->
@@ -25,7 +30,7 @@
                 <img id="apod-image" alt="Astronomy Picture of the Day" style="display: none;">
                 <div id="apod-title"></div>
                 <div id="apod-description"></div>
-                <button id="fetch-astronomy" class="fetch-btn">Fetch Astronomy Data</button>
+                <button id="fetch-astronomy" class="fetch-btn" title="Click to fetch the Astronomy Picture of the Day">🚀 Fetch Astronomy Data</button>
             </div>
         </div>
 
@@ -37,17 +42,22 @@
                 <input id="new-weather-description" placeholder="New Weather Description">
                 <input id="new-humidity" placeholder="New Humidity">
                 <input id="new-wind-speed" placeholder="New Wind Speed">
-                <button id="update-weather">Update Weather</button>
+                <button id="update-weather" title="Update the displayed weather data">Update Weather</button>
             </div>
 
             <div id="update-apod-container" class="container">
                 <h3>Update NASA APOD Data</h3>
                 <input id="new-apod-title" placeholder="New APOD Title">
                 <input id="new-apod-description" placeholder="New APOD Description">
-                <button id="update-apod">Update APOD</button>
+                <button id="update-apod" title="Update the displayed APOD information">Update APOD</button>
             </div>
         </div>
     </div>
+
+    <!-- Footer for data sources -->
+    <footer>
+        <p>Data provided by NASA and OpenWeatherMap.</p>
+    </footer>
 
     <script src="Script1.js"></script>
 </body>
